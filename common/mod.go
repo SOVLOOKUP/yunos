@@ -1,7 +1,5 @@
 package common
 
-const PROTO_NAME = "/yunos/cmd/0.0.0"
-
 type EndPoint struct {
 	name   string
 	input  string
