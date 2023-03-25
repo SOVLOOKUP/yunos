@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log"
+	"time"
 
 	libp2p "github.com/libp2p/go-libp2p"
 	"github.com/sourcegraph/jsonrpc2"
@@ -21,17 +22,16 @@ func main() {
 	yuns := server.New(ctx, &s)
 	// println(yuns.Addr())
 
-	go func() {
-		for i := 0; i < 1000; i++ {
+	for i := 0; i < 1000; i++ {
+		time.Sleep(time.Second / 10)
+		go func() {
 			err := newClient(yuns.Addr())
 			if err != nil {
-				println(err)
+				panic(err)
 			}
 			// println(i)
-		}
-	}()
-
-	select {}
+		}()
+	}
 }
 
 func newClient(addr string) error {
